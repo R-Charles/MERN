@@ -17,10 +17,13 @@ class Ninja {
 }
 
 const ninja1 = new Ninja('Toyoma', 4);
-ninja1.sayName();
-ninja1.showStats();
-ninja1.drinkSake();
-ninja1.showStats();
+ninja1.sayName().showStats().drinkSake().showStats();
+// ninja1.showStats();
+// ninja1.drinkSake();
+// ninja1.showStats();
+
+// var land = new Land();
+// land.setParams("500 sq ft").close().doorStatus().open().doorStatus();
 
 
 class Sensei extends Ninja {
