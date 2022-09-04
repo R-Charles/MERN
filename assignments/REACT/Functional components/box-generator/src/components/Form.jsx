@@ -36,8 +36,8 @@ const Form = ()=>{
             {
                 listOfColors.map((q,idx)=>{
                     return(
-                        <div>
-                            <h3>{q.boxColor}</h3>
+                        <div className="box" style={{backgroundColor: q.boxColor}}>
+                            <h3></h3>
                         </div>
                     )
                 })
