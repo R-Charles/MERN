@@ -5,6 +5,7 @@ const Form = () => {
     let[lastName, setlastName]=useState("");
     let[email, setemail]=useState("");
     let[password, setpassword]=useState("");
+    let[passwordConfirmation, setpasswordConfirmation] =useState("");
     
     function showError(){
         if(firstName.length == 0){
@@ -44,17 +45,16 @@ const Form = () => {
                 </div>
                 <div className="form-group">
                     <label>password</label>
-                    <input onChange={(e)=> setpassword(e.target.value)} type="text" className="form-control" />
+                    <input onChange={(e)=> setpassword(e.target.value)} type="password" className="form-control" />
                     {
                         password.length<8 && password.length>0 ? <p className="text-danger">password must be at least 3 characters long</p> : null
                     }
                 </div>
                 <div className="form-group">
                     <label>password confirmation</label>
-                    <input onChange={(e)=> setpassword(e.target.value)} type="text" className="form-control" />
+                    <input onChange={(e)=> setpasswordConfirmation(e.target.value)} type="password" className="form-control" />
                     {
-                        password.length<8 && passwordName.length>0 ? <p className="text-danger">email must be at least 3 characters long</p> : null
-                    }
+                        passwordConfirmation !== password && passwordConfirmation.length>0 ? <p className="text-danger"> Your passwords do not match!</p>:''} 
                 </div>
             </form>
         </div>
