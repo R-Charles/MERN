@@ -142,6 +142,42 @@
         "Front": "what is routing",
         "Back": ""
         
+    },  {
+        "Category": "coding",
+        "Front": "what is an API",
+        "Back": "Application Programming Interface... A source for some external data that you can use in your application"
+        
+    },  {
+        "Category": "Coding",
+        "Front": "what is fetching?",
+        "Back": "the retrieval of data by a software program, script, or hardware device"
+        
+    },  {
+        "Category": "coding",
+        "Front": "what does the fetch() method return",
+        "Back": "Returns a Promise so you can use the then() and catch() methods to handle it"
+        
+    },  {
+        "Category": "Coding",
+        "Front": "what is a response?",
+        "Back": "when a search engine or website visitor makes a request to a web server, a three digit HTTP Response Status Code is returned. This code indi
+                indicates what is about to happen. A response code of 200 means - okay, here is the content you requested. 301 means - the page has moved, redirecting you now."
+        
+    },  {
+        "Category": "coding",
+        "Front": "asynchronous code",
+        "Back": "refers to the occurrence of events independent of the main program flow. events do no wait for others to finish."
+        
+    },  {
+        "Category": "Coding",
+        "Front": "",
+        "Back": ""
+        
+    },  {
+        "Category": "coding",
+        "Front": "what does the fetch() method return",
+        "Back": "Returns a Promise so you can use the then() and catch() methods to handle it"
+        
     }
 
 ]
