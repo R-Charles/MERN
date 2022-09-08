@@ -170,13 +170,44 @@
         
     },  {
         "Category": "Coding",
+        "Front": "what does axios do",
+        "Back": ""
+        
+    },  {
+        "Category": "coding",
+        "Front": "why use MongoDB",
+        "Back": "Everything stored in MongoDB is a JSON object...JavaScript Object Notation"
+        
+    },  {
+        "Category": "Coding",
         "Front": "",
         "Back": ""
         
     },  {
         "Category": "coding",
-        "Front": "what does the fetch() method return",
-        "Back": "Returns a Promise so you can use the then() and catch() methods to handle it"
+        "Front": "",
+        "Back": ""
+        
+    },  {
+        "Category": "Coding",
+        "Front": "what is a response?",
+        "Back": "when a search engine or website visitor makes a request to a web server, a three digit HTTP Response Status Code is returned. This code indi
+                indicates what is about to happen. A response code of 200 means - okay, here is the content you requested. 301 means - the page has moved, redirecting you now."
+        
+    },  {
+        "Category": "coding",
+        "Front": "asynchronous code",
+        "Back": "refers to the occurrence of events independent of the main program flow. events do no wait for others to finish."
+        
+    },  {
+        "Category": "Coding",
+        "Front": "what does axios do",
+        "Back": ""
+        
+    },  {
+        "Category": "coding",
+        "Front": "why use MongoDB",
+        "Back": "Everything stored in MongoDB is a JSON object"
         
     }
 
