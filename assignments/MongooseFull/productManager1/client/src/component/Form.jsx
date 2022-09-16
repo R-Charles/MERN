@@ -16,7 +16,7 @@ const Form = () => {
             })
         }
         
-console.log("formInfo", formInfo);
+
     const submitHandler = (e)=>{
         e.preventDefault();
         axios.post("http://localhost:8000/api/products", formInfo)
