@@ -26,3 +26,9 @@ CHEAT SHEET
 20. Revert to react version 17 and run npm install at the end.
 project folder - nodemon server.js..... client folder - npm start
 
+npm install @material-ui/core --legacy-peer-deps
+
+1 = lowercase plur
+2 = cap sing
+3 = low sin
+4 = caps plural
