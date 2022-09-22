@@ -16,7 +16,7 @@ CHEAT SHEET
 12. Create a model file as usual in the models folder. Set up model according to wireframe and project requirements.
 13. Create a controller file in the controllers folder, and set up the controllers to work with your models the you imported- Conrtoller file needs the import to connect with the model. Have the CRUD functions in the controllers.
 14. Create a routes file in the routes folder and set up routes. Import the controllers in the routes file. Make sure the methods in the controllers are referenced in the routes.
-15. In server.js import(require) the routes and pass the app object to it(make sure this is the second to last line in server.js- basically the require routes part is underneathe the app.use parts)
+15. In server.js import(require) the routes and pass the app object to it(make sure this is the second to last line in server.js- basically the require routes part is underneath the app.use parts)
 
 16. CHECKPOINT: test all routes using postman before building the front end.
 17. Enable CORS -> in server.js import it and then insert the app.use(cors()) command.
@@ -32,3 +32,161 @@ npm install @material-ui/core --legacy-peer-deps
 2 = cap sing
 3 = low sin
 4 = caps plural
+
+
+
+SERVER.JS FILE
+----------------------------------------------------------------
+const express = require("express");
+const app = express();
+const port = 8000;
+const cors = require("cors"); //allows backend to share resources with our react application
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+require("./server/config/mongoose.config");
+
+require("./server/routes/product.route")(app);
+
+
+
+
+
+app.listen( port, () => console.log(`Listening on port: ${port}`) );
+
+----------------------------------------------------------------------------------------------------------------
+
+MONGOOSE.CONFIG.JS
+------------------------------------------------------------------------------------------------------------
+
+const mongoose = require('mongoose');
+
+const db_name = "productManager"
+
+mongoose.connect(`mongodb://localhost/${db_name}`,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('Established a connection to the database'))
+    .catch(err => console.log('Something went wrong when connecting to the database', err));
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+MODELS FILE
+---------------------------------------------------------------------------------
+
+
+const mongoose = require("mongoose");
+
+//title, price, and description
+const ProductSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "Title is required!"],
+        min: [2, "Title must be at least 4 characters long!"]
+    },
+    price: {
+        type: Number,
+        required: [true, "Price is needed"],
+        minlength: [2, "Price must be at least 3 characters long!"]
+    },
+    description: {
+        type: String,
+        required: [true, "Description is required!"],
+        minlength: [2, "Description must be atleast 10 characters long!"]
+    }
+
+}, {timestamps: true})
+
+
+const Product = mongoose.model('Product', ProductSchema);
+
+module.exports = Product;
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+CONTROLLERS.JS
+-----------------------------------------------------------------------------------------
+
+const Product = require("../models/products.model");
+
+module.exports.findAllProducts = (req,res) => {
+    Product.find()
+    .then(allProducts => {
+        res.json({results: allProducts})
+    })
+    .catch(err=> {
+        res.json(err)
+    })
+}
+
+module.exports.createProduct = (req, res) => {
+    Product.create(req.body)
+    .then(newProduct => {
+        res.json({results: newProduct})
+    })
+    .catch(err=> {
+        res.json(err)
+    })
+}
+
+module.exports.findOneProduct = (req, res) => {
+    Product.findOne({_id: req.params.id})
+    .then(Product => {
+        res.json({results: Product})
+    })
+    .catch(err=> {
+        res.json(err)
+    })
+}
+
+
+module.exports.updateOneProduct = (req, res) => {
+    Product.findOneAndUpdate(
+        {_id: req.params.id},
+        req.body,
+        { new: true, runValidators: true }
+        
+    )
+        .then(updatedProduct => {
+            res.json({results: updatedProduct})
+        })
+        .catch(err=> {
+            res.json(err)
+        })
+}
+
+module.exports.deleteProduct = (req, res) => {
+    Product.deleteOne({_id: req.params.id})
+    .then(Product => {
+        res.json({results: Product})
+    })
+    .catch(err=> {
+        res.json(err)
+    })
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+ROUTES.JS
+----------------------------------------------------------------------------------------
+
+const ProductController = require("../controllers/product.contoroller");
+
+module.exports = (app) => {
+    app.get("/api/products", ProductController.findAllProducts);
+    app.post("/api/products", ProductController.createProduct);
+    app.get("/api/products/:id", ProductController.findOneProduct);
+    app.put("/api/products/:id", ProductController.updateOneProduct);
+    app.delete("/api/products/:id", ProductController.deleteProduct);
+}
+
+
+----------------------------------------------------------------------------------------------------------------------
